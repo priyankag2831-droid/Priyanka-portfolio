@@ -1,0 +1,1840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Priyanka Gond - Data Analyst Portfolio</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --secondary: #7c3aed;
+            --accent: #06b6d4;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --text: #334155;
+            --gradient: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+        }
+
+        [data-theme="dark"] {
+            --primary: #60a5fa;
+            --secondary: #a78bfa;
+            --accent: #22d3ee;
+            --dark: #f8fafc;
+            --light: #0f172a;
+            --text: #e2e8f0;
+            --gradient: linear-gradient(135deg, #1e40af 0%, #6b21a8 100%);
+        }
+
+        [data-theme="dark"] body {
+            background: #0f172a;
+        }
+
+        [data-theme="dark"] nav {
+            background: rgba(15, 23, 42, 0.95);
+        }
+
+        [data-theme="dark"] .skill-card,
+        [data-theme="dark"] .project-card,
+        [data-theme="dark"] .experience-item,
+        [data-theme="dark"] .education-card,
+        [data-theme="dark"] .contact-card {
+            background: #1e293b;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        [data-theme="dark"] #projects,
+        [data-theme="dark"] #education {
+            background: #0f172a;
+        }
+
+        [data-theme="dark"] footer {
+            background: #020617;
+        }
+
+        /* Dashboard Styles */
+        .dashboard-container {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            margin-top: 2rem;
+        }
+
+        [data-theme="dark"] .dashboard-container {
+            background: #1e293b;
+        }
+
+        .dashboard-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .dashboard-header h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.8rem;
+        }
+
+        .filter-section {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--light);
+            border-radius: 15px;
+        }
+
+        [data-theme="dark"] .filter-section {
+            background: #0f172a;
+        }
+
+        .filter-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .filter-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .filter-group select,
+        .filter-group input {
+            width: 100%;
+            padding: 0.7rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            background: white;
+            color: var(--text);
+            transition: all 0.3s;
+        }
+
+        [data-theme="dark"] .filter-group select,
+        [data-theme="dark"] .filter-group input {
+            background: #1e293b;
+            border-color: #334155;
+        }
+
+        .filter-group select:focus,
+        .filter-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--gradient);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .recommendations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .recommendation-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        [data-theme="dark"] .recommendation-card {
+            background: #0f172a;
+            border-color: #334155;
+        }
+
+        .recommendation-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .recommendation-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border-color: var(--primary);
+        }
+
+        .recommendation-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .rec-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+
+        .rec-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--dark);
+        }
+
+        .rec-score {
+            background: var(--gradient);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        .rec-category {
+            display: inline-block;
+            background: var(--light);
+            color: var(--primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-bottom: 0.8rem;
+        }
+
+        [data-theme="dark"] .rec-category {
+            background: #1e293b;
+        }
+
+        .rec-description {
+            color: var(--text);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .rec-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-top: 1rem;
+        }
+
+        .rec-tag {
+            background: #e0e7ff;
+            color: #4338ca;
+            padding: 0.2rem 0.6rem;
+            border-radius: 10px;
+            font-size: 0.75rem;
+        }
+
+        [data-theme="dark"] .rec-tag {
+            background: #312e81;
+            color: #c7d2fe;
+        }
+
+        .chart-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        [data-theme="dark"] .chart-container {
+            background: #1e293b;
+        }
+
+        .chart-title {
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .bar-chart {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            height: 250px;
+            gap: 1rem;
+            padding: 1rem 0;
+        }
+
+        .bar-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .bar {
+            width: 100%;
+            background: var(--gradient);
+            border-radius: 8px 8px 0 0;
+            transition: all 0.5s ease;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .bar:hover {
+            opacity: 0.8;
+            transform: scaleY(1.05);
+        }
+
+        .bar-value {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+
+        .bar-label {
+            font-size: 0.85rem;
+            color: var(--text);
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text);
+            font-size: 1.1rem;
+        }
+
+        .no-results i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+
+        .theme-toggle:hover {
+            background: var(--primary);
+            color: white;
+            transform: rotate(180deg);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 2rem;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: floatParticle linear infinite;
+        }
+
+        @keyframes floatParticle {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) scale(1);
+                opacity: 0;
+            }
+        }
+
+        .data-icons {
+            position: absolute;
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.2);
+            animation: floatIcon 15s ease-in-out infinite;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .data-icons:hover {
+            color: rgba(255, 255, 255, 0.8);
+            transform: scale(1.3) rotate(10deg);
+        }
+
+        @keyframes floatIcon {
+            0%, 100% { 
+                transform: translateY(0px) rotate(0deg);
+            }
+            25% { 
+                transform: translateY(-30px) rotate(5deg);
+            }
+            50% { 
+                transform: translateY(-15px) rotate(-5deg);
+            }
+            75% { 
+                transform: translateY(-25px) rotate(3deg);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease 0.2s backwards;
+            min-height: 2rem;
+        }
+
+        .typing-cursor {
+            border-right: 3px solid white;
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+            0%, 49% { border-color: white; }
+            50%, 100% { border-color: transparent; }
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.4s backwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.6s backwards;
+        }
+
+        .btn {
+            padding: 0.9rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        .social-links {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--dark);
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .skill-card h3 {
+            color: var(--dark);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+
+        .skill-progress {
+            margin-top: 1rem;
+        }
+
+        .progress-item {
+            margin-bottom: 1rem;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--light);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--gradient);
+            border-radius: 10px;
+            transition: width 1.5s ease;
+            width: 0;
+        }
+
+        .skill-card.visible .progress-fill {
+            width: var(--progress-width);
+        }
+
+        .tag {
+            background: var(--light);
+            padding: 0.4rem 0.9rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--text);
+            border: 1px solid #e2e8f0;
+        }
+
+        /* Projects Section */
+        #projects {
+            background: var(--light);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .project-header {
+            padding: 2rem;
+            background: var(--gradient);
+            color: white;
+        }
+
+        .project-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-metrics {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .metric {
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .metric-label {
+            font-size: 0.85rem;
+            color: var(--text);
+        }
+
+        /* Experience Section */
+        .experience-timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--gradient);
+        }
+
+        .experience-item {
+            position: relative;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -3.75rem;
+            top: 2rem;
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 0 0 3px var(--light);
+        }
+
+        .experience-item h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-meta {
+            color: #64748b;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .experience-item ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .experience-item li {
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+
+        .experience-item li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* Education Section */
+        #education {
+            background: var(--light);
+        }
+
+        .education-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .education-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            display: flex;
+            align-items: start;
+            gap: 2rem;
+        }
+
+        .education-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            min-width: 60px;
+        }
+
+        .education-content h3 {
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .education-content .institution {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .education-content .score {
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .contact-card h3 {
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .contact-card a {
+            color: var(--text);
+            text-decoration: none;
+            word-break: break-word;
+        }
+
+        .contact-card a:hover {
+            color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .experience-timeline {
+                padding-left: 2rem;
+            }
+
+            .education-card {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul {
+                gap: 1rem;
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#dashboard">Dashboard</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div id="particles-container"></div>
+        <div class="hero-content">
+            <h1>Priyanka Arvind Gond</h1>
+            <div class="subtitle" id="typingText">Data Analyst</div>
+            <p>Transforming data into actionable insights with expertise in machine learning, statistical analysis, and data visualization</p>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn btn-primary">View Projects</a>
+                <a href="#contact" class="btn btn-outline">Get In Touch</a>
+                <button class="btn btn-primary" id="downloadResume">
+                    <i class="fas fa-download"></i> Download Resume
+                </button>
+            </div>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/priyanka-gond-562400285" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/priyankag2831-droid/ds_priyanka_gond" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://www.hackerrank.com/profile/e106" target="_blank"><i class="fab fa-hackerrank"></i></a>
+                <a href="mailto:Priyanka.g2831@gmail.com"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fas fa-code"></i></div>
+                    <h3>Programming</h3>
+                    <div class="skill-progress">
+                        <div class="progress-item">
+                            <div class="progress-label">
+                                <span>Python</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="--progress-width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="progress-item">
+                            <div class="progress-label">
+                                <span>SQL</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="--progress-width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="progress-item">
+                            <div class="progress-label">
+                                <span>MySQL</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="--progress-width: 80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Data Visualization</h3>
+                    <div class="skill-progress">
+                        <div class="progress-item">
+                            <div class="progress-label">
+                                <span>Tableau</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="--progress-width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="progress-item">
+                            <div class="progress-label">
+                                <span>Power BI</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="--progress-width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="progress-item">
+                            <div class="progress-label">
+                                <span>Plotly</span>
+                                <span>88%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="--progress-width: 88%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fas fa-robot"></i></div>
+                    <h3>Machine Learning</h3>
+                    <div class="skill-progress">
+                        <div class="progress-item">
+                            <div class="progress-label">
+                                <span>LSTM Models</span>
+                                <span>82%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="--progress-width: 82%"></div>
+                            </div>
+                        </div>
+                        <div class="progress-item">
+                            <div class="progress-label">
+                                <span>Time Series</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="--progress-width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="progress-item">
+                            <div class="progress-label">
+                                <span>Prediction</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="--progress-width: 80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fas fa-tools"></i></div>
+                    <h3>Tools & Platforms</h3>
+                    <div class="skill-progress">
+                        <div class="progress-item">
+                            <div class="progress-label">
+                                <span>Jupyter</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="--progress-width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="progress-item">
+                            <div class="progress-label">
+                                <span>Excel</span>
+                                <span>88%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="--progress-width: 88%"></div>
+                            </div>
+                        </div>
+                        <div class="progress-item">
+                            <div class="progress-label">
+                                <span>Streamlit</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="--progress-width: 85%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2>Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Stock Market Analysis & Prediction</h3>
+                        <p>Interactive Web Application</p>
+                    </div>
+                    <div class="project-content">
+                        <p>Built an interactive Streamlit application for real-time stock visualization and prediction using machine learning algorithms.</p>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <div class="metric-value">10K+</div>
+                                <div class="metric-label">Data Rows</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">85%</div>
+                                <div class="metric-label">Accuracy</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">25%</div>
+                                <div class="metric-label">↑ Engagement</div>
+                            </div>
+                        </div>
+                        <div class="skill-tags" style="margin-top: 1.5rem;">
+                            <span class="tag">Python</span>
+                            <span class="tag">LSTM</span>
+                            <span class="tag">Streamlit</span>
+                            <span class="tag">Yahoo Finance API</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Market Sentiment Analysis</h3>
+                        <p>Trading Performance Study</p>
+                    </div>
+                    <div class="project-content">
+                        <p>Analyzed trading performance correlation with Fear & Greed Index to derive strategic insights for improved decision-making.</p>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <div class="metric-value">Multi</div>
+                                <div class="metric-label">Data Sources</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">100%</div>
+                                <div class="metric-label">Data Cleaned</div>
+                            </div>
+                        </div>
+                        <div class="skill-tags" style="margin-top: 1.5rem;">
+                            <span class="tag">Python</span>
+                            <span class="tag">Data Cleaning</span>
+                            <span class="tag">Statistical Analysis</span>
+                            <span class="tag">Pandas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Dashboard Section -->
+    <section id="dashboard">
+        <div class="container">
+            <h2>Interactive Analytics Dashboard</h2>
+            <p style="text-align: center; max-width: 700px; margin: -1rem auto 2rem; color: var(--text);">
+                Explore my recommendation system built with real-time filtering and data visualization
+            </p>
+            
+            <div class="dashboard-container">
+                <div class="dashboard-header">
+                    <h3>📊 Course Recommendation Engine</h3>
+                    <p style="color: var(--text); margin-top: 0.5rem;">Filter and discover personalized learning paths based on your interests</p>
+                </div>
+
+                <!-- Filters -->
+                <div class="filter-section">
+                    <div class="filter-group">
+                        <label><i class="fas fa-folder"></i> Category</label>
+                        <select id="categoryFilter">
+                            <option value="all">All Categories</option>
+                            <option value="Data Science">Data Science</option>
+                            <option value="Machine Learning">Machine Learning</option>
+                            <option value="Programming">Programming</option>
+                            <option value="Business">Business</option>
+                            <option value="Cloud">Cloud Computing</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label><i class="fas fa-chart-line"></i> Min Rating</label>
+                        <select id="ratingFilter">
+                            <option value="0">All Ratings</option>
+                            <option value="4.5">4.5+ Stars</option>
+                            <option value="4.0">4.0+ Stars</option>
+                            <option value="3.5">3.5+ Stars</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label><i class="fas fa-search"></i> Search</label>
+                        <input type="text" id="searchFilter" placeholder="Search courses...">
+                    </div>
+                </div>
+
+                <!-- Stats -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalCourses">24</div>
+                        <div class="stat-label">Total Courses</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="avgRating">4.6</div>
+                        <div class="stat-label">Avg Rating</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="topCategory">Data Science</div>
+                        <div class="stat-label">Top Category</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="filteredCount">24</div>
+                        <div class="stat-label">Showing</div>
+                    </div>
+                </div>
+
+                <!-- Recommendations Grid -->
+                <div id="recommendationsContainer" class="recommendations-grid"></div>
+
+                <!-- Chart -->
+                <div class="chart-container">
+                    <div class="chart-title">📈 Category Distribution</div>
+                    <div class="bar-chart" id="categoryChart"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <h2>Professional Experience</h2>
+            <div class="experience-timeline">
+                <div class="experience-item">
+                    <h3>Operations Executive – Finance</h3>
+                    <div class="experience-meta">
+                        <i class="fas fa-building"></i> Future Plus Financial Services, Mumbai | 
+                        <i class="fas fa-calendar"></i> Oct 2023 – Sept 2024
+                    </div>
+                    <ul>
+                        <li>Supported daily operational and finance-related activities with high accuracy and efficiency</li>
+                        <li>Managed comprehensive client documentation, reports, and portfolio records</li>
+                        <li>Performed systematic data entry, portfolio updates, and backend coordination</li>
+                        <li>Ensured seamless workflow between clients and internal teams, improving operational efficiency</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <div class="container">
+            <h2>Education & Certifications</h2>
+            <div class="education-grid">
+                <div class="education-card">
+                    <div class="education-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <div class="education-content">
+                        <h3>Master of Computer Applications (MCA)</h3>
+                        <div class="institution">Thakur Institute of Management Studies, Mumbai</div>
+                        <div class="score">SGPI: 7.78 | Pursuing | Expected 2025</div>
+                    </div>
+                </div>
+
+                <div class="education-card">
+                    <div class="education-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <div class="education-content">
+                        <h3>Bachelor of Science in Computer Science</h3>
+                        <div class="institution">Thakur College of Science and Commerce</div>
+                        <div class="score">CGPA: 8.29 | 2023 | University of Mumbai</div>
+                    </div>
+                </div>
+
+                <div class="education-card">
+                    <div class="education-icon"><i class="fas fa-certificate"></i></div>
+                    <div class="education-content">
+                        <h3>Professional Certifications</h3>
+                        <ul style="list-style: none; padding: 0;">
+                            <li>• Oracle Cloud Infrastructure 2025 Data Science Professional</li>
+                            <li>• Oracle Cloud Infrastructure 2025 AI Foundations Associate</li>
+                            <li>• Data Visualization using Plotly (Coursera, 2024)</li>
+                            <li>• PHP & MySQL Training (IIT Bombay)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2>Let's Connect</h2>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                    <h3>Email</h3>
+                    <a href="mailto:Priyanka.g2831@gmail.com">Priyanka.g2831@gmail.com</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                    <h3>Phone</h3>
+                    <a href="tel:+919619198375">+91 9619198375</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <h3>Location</h3>
+                    <p>Mumbai, Maharashtra<br>India - 400101</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
+                    <h3>LinkedIn</h3>
+                    <a href="https://www.linkedin.com/in/priyanka-gond-562400285" target="_blank">Connect with me</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Priyanka Arvind Gond. All rights reserved.</p>
+        <p style="margin-top: 0.5rem; opacity: 0.8;">Passionate about turning data into insights</p>
+    </footer>
+
+    <script>
+        // Course Recommendation Data
+        const coursesData = [
+            { id: 1, title: "Advanced Python for Data Science", category: "Data Science", rating: 4.8, description: "Master Python libraries for data analysis and visualization", tags: ["Python", "Pandas", "NumPy"] },
+            { id: 2, title: "Machine Learning A-Z", category: "Machine Learning", rating: 4.7, description: "Complete ML course from basics to advanced algorithms", tags: ["ML", "Scikit-learn", "TensorFlow"] },
+            { id: 3, title: "SQL for Data Analytics", category: "Data Science", rating: 4.9, description: "Query optimization and advanced SQL techniques", tags: ["SQL", "Databases", "Analytics"] },
+            { id: 4, title: "Deep Learning Specialization", category: "Machine Learning", rating: 4.8, description: "Neural networks and deep learning fundamentals", tags: ["Deep Learning", "CNN", "RNN"] },
+            { id: 5, title: "Tableau Desktop Masterclass", category: "Data Science", rating: 4.6, description: "Create stunning dashboards and visualizations", tags: ["Tableau", "Visualization", "BI"] },
+            { id: 6, title: "Python Programming Bootcamp", category: "Programming", rating: 4.5, description: "Complete Python from zero to hero", tags: ["Python", "Programming", "Basics"] },
+            { id: 7, title: "Power BI for Business", category: "Business", rating: 4.7, description: "Business intelligence and reporting with Power BI", tags: ["Power BI", "Business", "Reports"] },
+            { id: 8, title: "Statistics for Data Science", category: "Data Science", rating: 4.8, description: "Statistical methods and hypothesis testing", tags: ["Statistics", "Probability", "Analysis"] },
+            { id: 9, title: "AWS Cloud Practitioner", category: "Cloud", rating: 4.6, description: "Cloud computing fundamentals on AWS", tags: ["AWS", "Cloud", "DevOps"] },
+            { id: 10, title: "Natural Language Processing", category: "Machine Learning", rating: 4.7, description: "Text analysis and NLP with Python", tags: ["NLP", "Text Mining", "NLTK"] },
+            { id: 11, title: "Excel for Data Analysis", category: "Business", rating: 4.5, description: "Advanced Excel formulas and pivot tables", tags: ["Excel", "Business", "Analysis"] },
+            { id: 12, title: "R Programming Complete", category: "Programming", rating: 4.6, description: "Statistical computing with R", tags: ["R", "Statistics", "Programming"] },
+            { id: 13, title: "Data Structures & Algorithms", category: "Programming", rating: 4.8, description: "Master DSA for coding interviews", tags: ["DSA", "Algorithms", "Coding"] },
+            { id: 14, title: "Time Series Forecasting", category: "Data Science", rating: 4.7, description: "Predict future trends with time series", tags: ["Forecasting", "ARIMA", "Prophet"] },
+            { id: 15, title: "Computer Vision Basics", category: "Machine Learning", rating: 4.6, description: "Image processing and computer vision", tags: ["CV", "OpenCV", "Images"] },
+            { id: 16, title: "Big Data with Spark", category: "Data Science", rating: 4.7, description: "Process large datasets with Apache Spark", tags: ["Spark", "Big Data", "Hadoop"] },
+            { id: 17, title: "Google Cloud Platform", category: "Cloud", rating: 4.5, description: "Deploy applications on GCP", tags: ["GCP", "Cloud", "Google"] },
+            { id: 18, title: "Business Analytics", category: "Business", rating: 4.6, description: "Data-driven business decision making", tags: ["Analytics", "Business", "Strategy"] },
+            { id: 19, title: "Docker & Kubernetes", category: "Cloud", rating: 4.7, description: "Container orchestration and deployment", tags: ["Docker", "K8s", "DevOps"] },
+            { id: 20, title: "Feature Engineering", category: "Machine Learning", rating: 4.8, description: "Create powerful ML features", tags: ["Features", "ML", "Engineering"] },
+            { id: 21, title: "Plotly & Dash Visualization", category: "Data Science", rating: 4.7, description: "Interactive web-based visualizations", tags: ["Plotly", "Dash", "Visualization"] },
+            { id: 22, title: "Java Programming", category: "Programming", rating: 4.5, description: "Object-oriented programming with Java", tags: ["Java", "OOP", "Programming"] },
+            { id: 23, title: "Azure Data Engineer", category: "Cloud", rating: 4.6, description: "Data engineering on Microsoft Azure", tags: ["Azure", "Data", "Cloud"] },
+            { id: 24, title: "Project Management for Data", category: "Business", rating: 4.5, description: "Lead data science projects effectively", tags: ["PM", "Agile", "Leadership"] }
+        ];
+
+        let filteredCourses = [...coursesData];
+
+        // Render recommendations
+        function renderRecommendations(courses) {
+            const container = document.getElementById('recommendationsContainer');
+            
+            if (courses.length === 0) {
+                container.innerHTML = `
+                    <div class="no-results">
+                        <i class="fas fa-search"></i>
+                        <p>No courses found matching your criteria. Try adjusting the filters.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = courses.map(course => `
+                <div class="recommendation-card">
+                    <div class="rec-header">
+                        <div class="rec-title">${course.title}</div>
+                        <div class="rec-score">★ ${course.rating}</div>
+                    </div>
+                    <div class="rec-category">${course.category}</div>
+                    <div class="rec-description">${course.description}</div>
+                    <div class="rec-tags">
+                        ${course.tags.map(tag => `<span class="rec-tag">${tag}</span>`).join('')}
+                    </div>
+                </div>
+            `).join('');
+
+            // Animate cards
+            const cards = container.querySelectorAll('.recommendation-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.5s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 50);
+            });
+        }
+
+        // Update stats
+        function updateStats(courses) {
+            document.getElementById('totalCourses').textContent = coursesData.length;
+            document.getElementById('filteredCount').textContent = courses.length;
+            
+            const avgRating = courses.length > 0 
+                ? (courses.reduce((sum, c) => sum + c.rating, 0) / courses.length).toFixed(1)
+                : '0.0';
+            document.getElementById('avgRating').textContent = avgRating;
+
+            const categoryCounts = {};
+            courses.forEach(c => {
+                categoryCounts[c.category] = (categoryCounts[c.category] || 0) + 1;
+            });
+            const topCat = Object.keys(categoryCounts).sort((a, b) => categoryCounts[b] - categoryCounts[a])[0] || 'N/A';
+            document.getElementById('topCategory').textContent = topCat;
+        }
+
+        // Render chart
+        function renderChart(courses) {
+            const categoryCounts = {};
+            courses.forEach(c => {
+                categoryCounts[c.category] = (categoryCounts[c.category] || 0) + 1;
+            });
+
+            const chartContainer = document.getElementById('categoryChart');
+            const maxCount = Math.max(...Object.values(categoryCounts), 1);
+
+            chartContainer.innerHTML = Object.entries(categoryCounts).map(([category, count]) => {
+                const height = (count / maxCount) * 100;
+                return `
+                    <div class="bar-item">
+                        <div class="bar" style="height: ${height}%">
+                            <div class="bar-value">${count}</div>
+                        </div>
+                        <div class="bar-label">${category}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Filter courses
+        function filterCourses() {
+            const category = document.getElementById('categoryFilter').value;
+            const minRating = parseFloat(document.getElementById('ratingFilter').value);
+            const searchTerm = document.getElementById('searchFilter').value.toLowerCase();
+
+            filteredCourses = coursesData.filter(course => {
+                const matchesCategory = category === 'all' || course.category === category;
+                const matchesRating = course.rating >= minRating;
+                const matchesSearch = course.title.toLowerCase().includes(searchTerm) || 
+                                     course.description.toLowerCase().includes(searchTerm) ||
+                                     course.tags.some(tag => tag.toLowerCase().includes(searchTerm));
+                
+                return matchesCategory && matchesRating && matchesSearch;
+            });
+
+            renderRecommendations(filteredCourses);
+            updateStats(filteredCourses);
+            renderChart(filteredCourses);
+        }
+
+        // Event listeners for filters
+        document.getElementById('categoryFilter').addEventListener('change', filterCourses);
+        document.getElementById('ratingFilter').addEventListener('change', filterCourses);
+        document.getElementById('searchFilter').addEventListener('input', filterCourses);
+
+        // Initial render
+        renderRecommendations(filteredCourses);
+        updateStats(filteredCourses);
+        renderChart(filteredCourses);
+
+        // Typing Animation
+        const texts = [
+            'Data Analyst',
+            'Python Developer',
+            'SQL Expert',
+            'ML Enthusiast',
+            'Data Visualizer'
+        ];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typingSpeed = 100;
+        const deletingSpeed = 50;
+        const pauseTime = 2000;
+
+        function typeText() {
+            const typingElement = document.getElementById('typingText');
+            const currentText = texts[textIndex];
+
+            if (!isDeleting) {
+                typingElement.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+
+                if (charIndex === currentText.length) {
+                    isDeleting = true;
+                    setTimeout(typeText, pauseTime);
+                    return;
+                }
+            } else {
+                typingElement.textContent = currentText.substring(0, charIndex);
+                charIndex--;
+
+                if (charIndex === 0) {
+                    isDeleting = false;
+                    textIndex = (textIndex + 1) % texts.length;
+                }
+            }
+
+            const speed = isDeleting ? deletingSpeed : typingSpeed;
+            setTimeout(typeText, speed);
+        }
+
+        // Start typing animation after page load
+        setTimeout(typeText, 1000);
+
+        // Dark Mode Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        
+        // Check for saved theme
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', savedTheme);
+        updateThemeIcon(savedTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+
+        function updateThemeIcon(theme) {
+            const icon = themeToggle.querySelector('i');
+            icon.className = theme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+        }
+
+        // Download Resume Function
+        document.getElementById('downloadResume').addEventListener('click', function() {
+            // Create a simple text-based resume
+            const resumeContent = `
+PRIYANKA ARVIND GOND
+Data Analyst | Python | SQL | Machine Learning
+
+CONTACT
+Email: Priyanka.g2831@gmail.com
+Phone: +91 9619198375
+Location: Mumbai, Maharashtra - 400101
+LinkedIn: https://www.linkedin.com/in/priyanka-gond-562400285
+GitHub: https://github.com/priyankag2831-droid/ds_priyanka_gond
+
+EDUCATION
+Master of Computer Applications (MCA) - Pursuing
+Thakur Institute of Management Studies, Mumbai | SGPI: 7.78 | Expected 2025
+
+Bachelor of Science in Computer Science
+Thakur College of Science and Commerce | CGPA: 8.29 | 2023
+
+TECHNICAL SKILLS
+Programming: Python (90%), SQL (85%), MySQL (80%)
+Visualization: Tableau (85%), Power BI (80%), Plotly (88%), Excel (88%)
+Machine Learning: LSTM Models (82%), Time Series (85%), Prediction (80%)
+Tools: Jupyter (90%), Streamlit (85%), Anaconda, Oracle Cloud
+
+EXPERIENCE
+Operations Executive – Finance
+Future Plus Financial Services, Mumbai | Oct 2023 – Sept 2024
+• Managed client documentation, reports, and portfolio records
+• Performed data entry, portfolio updates, and backend coordination
+• Ensured smooth workflow between clients and internal teams
+
+PROJECTS
+Stock Market Analysis & Prediction Web App
+• Built interactive Streamlit app with Yahoo Finance API
+• Implemented LSTM model achieving ~85% accuracy
+• Processed 10,000+ data rows with SMA, RSI, MACD indicators
+• Improved user engagement by 25%
+
+Market Sentiment Analysis
+• Analyzed trading performance against Fear & Greed Index
+• Cleaned and merged multi-source datasets
+• Identified profitability patterns during market phases
+
+CERTIFICATIONS
+• Oracle Cloud Infrastructure 2025 Data Science Professional
+• Oracle Cloud Infrastructure 2025 AI Foundations Associate
+• Data Visualization using Plotly (Coursera, 2024)
+• PHP & MySQL Training (IIT Bombay)
+`;
+
+            const blob = new Blob([resumeContent], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Priyanka_Gond_Resume.txt';
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+            
+            // Show feedback
+            const btn = this;
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-check"></i> Downloaded!';
+            btn.style.background = '#10b981';
+            setTimeout(() => {
+                btn.innerHTML = originalHTML;
+                btn.style.background = '';
+            }, 2000);
+        });
+
+        // Create animated particles
+        function createParticles() {
+            const container = document.getElementById('particles-container');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                const size = Math.random() * 6 + 2;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                
+                container.appendChild(particle);
+            }
+        }
+
+        // Create floating data icons
+        function createDataIcons() {
+            const hero = document.querySelector('.hero');
+            const icons = ['📊', '📈', '💹', '🔢', '📉', '💻', '🎯', '⚡', '🚀', '💡'];
+            
+            icons.forEach((icon, index) => {
+                const iconEl = document.createElement('div');
+                iconEl.className = 'data-icons';
+                iconEl.textContent = icon;
+                iconEl.style.left = (Math.random() * 80 + 10) + '%';
+                iconEl.style.top = (Math.random() * 80 + 10) + '%';
+                iconEl.style.animationDelay = (index * 1.5) + 's';
+                
+                // Click effect
+                iconEl.addEventListener('click', function(e) {
+                    this.style.animation = 'none';
+                    setTimeout(() => {
+                        this.style.animation = '';
+                    }, 10);
+                    
+                    // Create ripple effect
+                    const ripple = document.createElement('div');
+                    ripple.style.position = 'absolute';
+                    ripple.style.left = e.clientX + 'px';
+                    ripple.style.top = e.clientY + 'px';
+                    ripple.style.width = '10px';
+                    ripple.style.height = '10px';
+                    ripple.style.borderRadius = '50%';
+                    ripple.style.background = 'rgba(255,255,255,0.6)';
+                    ripple.style.transform = 'translate(-50%, -50%)';
+                    ripple.style.pointerEvents = 'none';
+                    ripple.style.animation = 'ripple 0.6s ease-out';
+                    document.body.appendChild(ripple);
+                    
+                    setTimeout(() => ripple.remove(), 600);
+                });
+                
+                hero.appendChild(iconEl);
+            });
+        }
+
+        // Add ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    width: 100px;
+                    height: 100px;
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize animations
+        createParticles();
+        createDataIcons();
+
+        // Mouse trail effect
+        let mouseTrail = [];
+        document.querySelector('.hero').addEventListener('mousemove', function(e) {
+            if (Math.random() > 0.9) {
+                const trail = document.createElement('div');
+                trail.style.position = 'absolute';
+                trail.style.left = e.clientX + 'px';
+                trail.style.top = e.clientY + 'px';
+                trail.style.width = '4px';
+                trail.style.height = '4px';
+                trail.style.borderRadius = '50%';
+                trail.style.background = 'rgba(255,255,255,0.5)';
+                trail.style.pointerEvents = 'none';
+                trail.style.animation = 'fadeOut 1s ease-out';
+                document.body.appendChild(trail);
+                
+                setTimeout(() => trail.remove(), 1000);
+            }
+        });
+
+        const fadeStyle = document.createElement('style');
+        fadeStyle.textContent = `
+            @keyframes fadeOut {
+                to {
+                    opacity: 0;
+                    transform: scale(3);
+                }
+            }
+        `;
+        document.head.appendChild(fadeStyle);
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = 80;
+                    const targetPosition = target.offsetTop - offset;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add scroll animation effect with skill progress bars
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    
+                    // Trigger skill progress bars
+                    if (entry.target.classList.contains('skill-card')) {
+                        entry.target.classList.add('visible');
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.skill-card, .project-card, .experience-item, .education-card, .contact-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
